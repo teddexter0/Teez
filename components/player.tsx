@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, Bookmark, Pause, Play, RotateCcw, Sparkles } from 'lucide-react';
 import type { BriefingSlot } from '../lib/briefing';
 import { TrendArt } from './art';
@@ -43,7 +43,7 @@ export function Player({ queue, preview, saved, onSave, onLearn, onFinish, onExi
     return () => window.clearInterval(timer);
   }, [playing, index, seconds]);
 
-  function advance() {
+  const advance = useCallback(() => {
     if (completed.current >= index) return;
     completed.current = index;
     onLearn(trend.id);
@@ -55,11 +55,11 @@ export function Player({ queue, preview, saved, onSave, onLearn, onFinish, onExi
     setElapsed(0);
     setReplay({ key: 0, start: 0 });
     window.scrollTo(0, 0);
-  }
+  }, [index, onFinish, onLearn, queue.length, trend.id]);
 
   const atEnd = elapsed >= seconds * 1000;
   // A single guarded advance handles both auto-play and a manual click at the boundary.
-  useEffect(() => { if (atEnd) advance(); });
+  useEffect(() => { if (atEnd) advance(); }, [atEnd, advance]);
 
   return (
     <section className="player wrap" aria-label={preview ? 'Trend preview' : 'Briefing player'}>

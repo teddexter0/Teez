@@ -30,9 +30,9 @@ export function HeroArt() {
           <ellipse cx="302" cy="277" rx="233" ry="155" />
         </g>
         <g fill={ink} className="tz-hero-small-print">
-          <text x="31" y="40" fontSize="12" letterSpacing="3">FIG. 01 / SIGNAL FOUND</text>
-          <text x="571" y="523" textAnchor="end" fontSize="10" letterSpacing="2.5">TEEZ SIGNAL STUDIO</text>
-          <text x="31" y="523" fontSize="10" letterSpacing="2.5">001 — 006</text>
+          <text x="31" y="62" fontSize="12" letterSpacing="3">FIG. 01 / SIGNAL FOUND</text>
+          <text x="571" y="504" textAnchor="end" fontSize="10" letterSpacing="2.5">TEEZ SIGNAL STUDIO</text>
+          <text x="31" y="504" fontSize="10" letterSpacing="2.5">001 — 006</text>
         </g>
         <path fill={ink} d="M89 120v20H69v-20zm20-20v20H89v-20zm20-20v20h-20V80zm-20 40v20H89v-20zm20-20v20h-20v-20zm20-20v20h-20V80z" opacity=".92" />
         <g transform="translate(304 274) rotate(-12)">

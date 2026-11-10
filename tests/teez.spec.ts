@@ -13,7 +13,8 @@ test('every time cap is honored and a briefing ends after its last unique card',
     await page.locator('.duration').filter({ has: radio }).click();
     await expect(radio).toBeChecked();
     const summary = page.getByText(/stories · \d+:\d+ max/);
-    const match = (await summary.innerText()).match(/(\d+) stories · (\d+):(\d+) max/)!;
+    const match = (await summary.textContent())?.match(/(\d+) stories · (\d+):(\d+) max/);
+    if (!match) throw new Error('Expected the briefing length summary');
     sizes.push(Number(match[1]));
     expect(Number(match[2]) * 60 + Number(match[3])).toBeLessThanOrEqual(minutes * 60);
   }
